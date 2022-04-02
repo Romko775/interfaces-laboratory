@@ -1,6 +1,8 @@
 package com.snu.lab;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Cursor;
@@ -79,27 +81,23 @@ public class SplitMenuButtonApplication extends Application {
         return _btn;
     }
 
-    private MenuItem createMenuItemCut() {
-        MenuItem _menuItemCut = new MenuItem("Вирізати");
-        _menuItemCut.setStyle(MenuItemFontStyle);
-        _menuItemCut.setAccelerator(KeyCombination.keyCombination("Ctrl+U"));
-        _menuItemCut.setOnAction(e -> System.out.println("Вирізаю"));
-        return _menuItemCut;
+    private MenuItem createMenuItem(String title, String style, KeyCombination keyCombination, EventHandler<ActionEvent> action) {
+        MenuItem _menuItem = new MenuItem(title);
+        _menuItem.setStyle(style);
+        _menuItem.setAccelerator(keyCombination);
+        _menuItem.setOnAction(action);
+        return _menuItem;
+    }
+
+    private MenuItem createMenuItemCut () {
+        return createMenuItem("Вирізати", MenuItemFontStyle, KeyCombination.keyCombination("Ctrl+U"), e -> System.out.println("Вирізаю"));
     }
 
     private MenuItem createMenuItemCopy() {
-        MenuItem _menuItemCopy = new MenuItem("Копіювати");
-        _menuItemCopy.setStyle(MenuItemFontStyle);
-        _menuItemCopy.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
-        _menuItemCopy.setOnAction(e1 -> System.out.println("Копіюю"));
-        return _menuItemCopy;
+        return createMenuItem("Копіювати", MenuItemFontStyle, KeyCombination.keyCombination("Ctrl+O"), e1 -> System.out.println("Копіюю"));
     }
 
     private MenuItem createMenuItemPaste() {
-        MenuItem _menuItemPaste = new MenuItem("Вставити");
-        _menuItemPaste.setStyle(MenuItemFontStyle);
-        _menuItemPaste.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
-        _menuItemPaste.setOnAction(e2 -> System.out.println("Вставляю"));
-        return _menuItemPaste;
+        return createMenuItem("Вставити", MenuItemFontStyle, KeyCombination.keyCombination("Ctrl+P"), e1 -> System.out.println("Вставляю"));
     }
 }
